@@ -82,18 +82,24 @@ def main():
         4. Bracket sequence analysis
     """
     print("=== Task 1: Check number > 7 ===")
-    number = float(input("Enter a number: "))
-    check_number(number)
+    try:
+        number = float(input("Enter a number: "))
+        check_number(number)
+    except ValueError:
+        print("Please enter a valid number")
 
     print("\n=== Task 2: Check name ===")
     name = input("Enter a name: ")
     check_name(name)
 
     print("\n=== Task 3: Filter multiples of 3 ===")
-    arr_input = input("Enter numbers separated by spaces: ")
-    arr = list(map(int, arr_input.split()))
-    filtered = filter_multiples_of_three(arr)
-    print("Elements multiples of 3: ", filtered)
+    try:
+        arr_input = input("Enter numbers separated by spaces: ")
+        arr = list(map(int, arr_input.split()))
+        filtered = filter_multiples_of_three(arr)
+        print("Elements multiples of 3: ", filtered)
+    except ValueError:
+        print("Please enter valid numbers")
 
     print("\n=== Task 4: Bracket sequence ===")
     check_bracket_sequence()

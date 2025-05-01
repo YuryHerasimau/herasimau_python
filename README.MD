@@ -24,7 +24,7 @@ Bonus points:
 ## Features
 
 - Interactive console application
-- 4 independent tasks
+- 4 independent tasks with input validation
 - Bracket sequence analysis with multiple correction options
 - Type hints and docstrings for all functions
 
