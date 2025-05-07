@@ -1,12 +1,15 @@
 def check_number(number: float) -> None:
     """
     Prints 'Hello' if the input number is greater than 7.
+    For numbers <= 7, prints a message indicating the number is too small.
 
     Args:
         num (float): The number to check
     """
     if number > 7:
         print("Hello")
+    else:
+        print(f"The number {number} is 7 or less")
 
 
 def check_name(name: str) -> None:
