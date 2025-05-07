@@ -28,21 +28,17 @@ def check_name(name: str) -> None:
         print("There is no such name")
 
 
-def filter_multiples_of_three(arr: list[int]) -> list[int]:
+def filter_multiples_of_three(arr: list[float]) -> list[float]:
     """
     Filters elements of the input array, returning only those divisible by 3.
 
     Args:
-        arr (list[int]): Input array of integers
+        arr (list[float]): Input array of numbers
 
     Returns:
-        list[int]: Array containing only elements divisible by 3
+        list[float]: Array containing only elements divisible by 3
     """
-    result = []
-    for x in arr:
-        if x % 3 == 0:
-            result.append(x)
-    return result
+    return [x for x in arr if abs(x % 3) < 1e-9] # 1e-9 (0.000000001) - Account for floating point precision
 
 
 def check_bracket_sequence() -> None:
@@ -98,7 +94,7 @@ def main():
     print("\n=== Task 3: Filter multiples of 3 ===")
     try:
         arr_input = input("Enter numbers separated by spaces: ")
-        arr = list(map(int, arr_input.split()))
+        arr = list(map(float, arr_input.split()))
         filtered = filter_multiples_of_three(arr)
         print("Elements multiples of 3: ", filtered)
     except ValueError:
