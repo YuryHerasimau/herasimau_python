@@ -41,6 +41,36 @@ def filter_multiples_of_three(arr: list[float]) -> list[float]:
     return [x for x in arr if abs(x % 3) < 1e-9] # 1e-9 (0.000000001) - Account for floating point precision
 
 
+def is_balanced(input_string: str) -> bool:
+    """
+    Checks if a bracket sequence is balanced.
+    Supports parentheses () and square brackets [].
+
+    Args:
+        input_string (str): Input string with parentheses
+
+    Returns:
+        bool: True if the sequence is correct, False otherwise
+    """
+    stack = []
+    bracket_pairs = {')': '(', ']': '['}
+
+    for char in input_string:
+        # Opening parentheses
+        if char in bracket_pairs.values():
+            stack.append(char)
+        # Closing parentheses
+        elif char in bracket_pairs:
+            if not stack:
+                return False
+            if stack[-1] != bracket_pairs[char]:
+                return False
+            # Remove the last opening bracket (found a pair)
+            stack.pop()
+    # True if the stack is empty (all brackets are closed)
+    return not stack
+
+
 def check_bracket_sequence() -> None:
     """
     Analyzes a bracket sequence problem and suggests several options for correction.
@@ -51,23 +81,32 @@ def check_bracket_sequence() -> None:
         - How to fix it if incorrect
         - The corrected sequence
     """
-    sequence = "[((())()(())]]"
-    print("\nGiven bracket sequence:", sequence)
-    print("Can this sequence be considered correct? No")
-    print("To make it correct, you need to:")
+    original_sequence = "[((())()(())]]"
+    print("\nGiven bracket sequence:", original_sequence)
+    is_correct = is_balanced(original_sequence)
+    print("Can this sequence be considered correct?", "Yes" if is_correct else "No")
 
-    print("\nSolution #1. Convert to all parentheses:")
-    print("1. Change the first bracket '[' to '('")
-    print("2. Change the last bracket ']' to ')'")
-    print("Corrected sequence: ((())()(()))")
+    if not is_correct:
+        print("To make it correct, you need to:")
 
-    print("\nSolution #2. Mixed option (square outside):")
-    print("1. Change the second bracket '(' to '['")
-    print("Corrected sequence: [[(())()(())]]")
+        solution1 = "((())()(()))"
+        print("\nSolution #1. Convert to all parentheses:")
+        print("1. Change the first bracket '[' to '('")
+        print("2. Change the last bracket ']' to ')'")
+        print("Corrected sequence:", solution1)
+        print("Validation:", is_balanced(solution1))
 
-    print("\nSolution #3. Mixed option (square outside):")
-    print("1. Change the second to last bracket ']' to ')'")
-    print("Corrected sequence: [((())()(()))]")
+        solution2 = "[[(())()(())]]"
+        print("\nSolution #2. Mixed option (square outside):")
+        print("1. Change the second bracket '(' to '['")
+        print("Corrected sequence:", solution2)
+        print("Validation:", is_balanced(solution2))
+
+        solution3 = "[((())()(()))]"
+        print("\nSolution #3. Mixed option (square outside):")
+        print("1. Change the second to last bracket ']' to ')'")
+        print("Corrected sequence:", solution3)
+        print("Validation:", is_balanced(solution3))
 
 
 def main():
