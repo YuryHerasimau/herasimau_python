@@ -14,16 +14,16 @@ def check_number(number: float) -> None:
 
 def check_name(name: str) -> None:
     """
-    Checks if the input name is 'John' and prints corresponding greeting.
+    Checks if the input name is 'John' (case-insensitive) and prints corresponding greeting.
 
     Args:
         name (str): The name to check
 
     Prints:
-        'Hello, John' if name matches, otherwise 'There is no such name'
+        'Hello, John' if name matches (any case), otherwise 'There is no such name'
     """
-    if name == "John":
-        print(f"Hello, {name}")
+    if name.lower() == "john":
+        print(f"Hello, John")
     else:
         print("There is no such name")
 
@@ -92,7 +92,7 @@ def main():
         print("Please enter a valid number")
 
     print("\n=== Task 2: Check name ===")
-    name = input("Enter a name: ")
+    name = input("Enter a name: ").strip()
     check_name(name)
 
     print("\n=== Task 3: Filter multiples of 3 ===")
